@@ -18,9 +18,7 @@ class Hangman {
    *    { word: "book" }
    * */
   getRandomWord(difficulty) {
-    return fetch(
-      `https://hangman-micro-service.herokuapp.com//?difficulty=${difficulty}`
-    )
+    return fetch(`https://hangman-micro-service.herokuapp.com//?difficulty=${difficulty}`)
       .then((r) => r.json())
       .then((r) => r.word);
   }
