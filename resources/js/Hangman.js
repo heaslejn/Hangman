@@ -133,21 +133,23 @@ class Hangman {
     }
   }
 
-  /**
-   * This function will return a string of the word placeholder
-   * It will have underscores in the correct number and places of the unguessed letters.
-   * i.e.: if the word is BOOK, and the letter O has been guessed, this would return _ O O _
-   */
   getWordHolderText() {
-    return;
+    let wordArrlength = this.word.length;
+    let wordArr = this.word.split(``);
+    let guessesArr = this.guesses;
+    let wordHolderArr = ``;
+
+    for(let i = 0; i < wordArrlength; i ++){
+      if(guessesArr.includes(wordArr[i])){
+        wordHolderArr = wordHolderArr + wordArr[i];
+      }else{
+        wordHolderArr = wordHolderArr + ` _ `;
+      }
+    }
+    console.log(wordHolderArr);
+    return wordHolderArr;
   }
 
-  /**
-   * This function returns a string of all the previous guesses, seperated by a comma
-   * This would return something that looks like
-   * (Guesses: A, B, C)
-   * Hint: use the Array.prototype.join method.
-   */
   getGuessesText() {
     return ``;
   }
