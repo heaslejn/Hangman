@@ -31,19 +31,13 @@ class Hangman {
    * @param {function} next callback function to be called after a word is reveived from the API.
    */
   async start(difficulty, next) {
-    // get word and set it to the class's this.word
     this.word = await this.getRandomWord(difficulty);
     console.log(this.word);
-    // clear canvas
     this.clearCanvas();
-    // draw base
     this.drawBase();
-    // reset this.guesses to empty array
     this.guesses = [];
     this.getWordHolderText();
-    // reset this.isOver to false
     this.isOver = false;
-    // reset this.didWin to false
     this.didWin = false;
     next();
   }
@@ -96,11 +90,6 @@ class Hangman {
     }
   }
 
-  /**
-   * Based on the number of wrong guesses, this function would determine and call the appropriate drawing function
-   * drawHead, drawBody, drawRightArm, drawLeftArm, drawRightLeg, or drawLeftLeg.
-   * if the number wrong guesses is 6, then also set isOver to true and didWin to false.
-   */
   onWrongGuess() {
     let wordArrlength = this.word.length;
     let wordArr = this.word.split(``);
@@ -151,19 +140,13 @@ class Hangman {
   }
 
   getGuessesText() {
-    return ``;
+    return `Guessed: ` + this.guesses.join(`, `);
   }
 
-  /**
-   * Clears the canvas
-   */
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  /**
-   * Draws the hangman base
-   */
   drawBase() {
     this.ctx.fillRect(95, 10, 150, 10); // Top
     this.ctx.fillRect(245, 10, 10, 50); // Noose
@@ -171,15 +154,47 @@ class Hangman {
     this.ctx.fillRect(10, 410, 175, 10); // Base
   }
 
-  drawHead() {}
+  drawHead() {
+    console.log(`Head`);
+    this.ctx.beginPath();
+    this.ctx.arc(250, 85, 25, 0, Math.PI *2, false);
+    this.ctx.stroke();
+  }
 
-  drawBody() {}
+  drawBody() {
+    console.log(`Body`);
+    this.ctx.fillRect(245, 110, 10, 80, false);
+  }
 
-  drawLeftArm() {}
+  drawLeftArm() {
+    console.log(`RightArm`);
+    this.ctx.beginPath();
+    this.ctx.moveTo(250, 175);
+    this.ctx.lineTo(330, 100);
+    this.ctx.stroke();
+  }
 
-  drawRightArm() {}
+  drawRightArm() {
+    console.log(`LeftArm`);
+    this.ctx.beginPath();
+    this.ctx.moveTo(250, 175);
+    this.ctx.lineTo(170, 100);
+    this.ctx.stroke();
+  }
 
-  drawLeftLeg() {}
+  drawLeftLeg() {
+    console.log(`LeftLeg`);
+    this.ctx.beginPath();
+    this.ctx.moveTo(245, 190);
+    this.ctx.lineTo(170, 250);
+    this.ctx.stroke();
+  }
 
-  drawRightLeg() {}
+  drawRightLeg() {
+    console.log(`RightLeg`);
+    this.ctx.beginPath();
+    this.ctx.moveTo(255, 190);
+    this.ctx.lineTo(330, 250);
+    this.ctx.stroke();
+  }
 }
