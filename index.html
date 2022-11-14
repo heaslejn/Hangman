@@ -12,15 +12,16 @@
     <body>
         <h1>Hangman</h1>
         <div id="startWrapper">
-            <form id="difficultySelect">
+            <form id="difficultySelect" method="GET">
                 <select id="difficulty">
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>
                 </select>
-                <input type="submit" value="Start!" />
+                <input type="submit" id="startBtn" value="Start!"/>
             </form>
         </div>
+        
         <div id="gameWrapper" class="hidden">
             <form id="guessForm">
                 <input
